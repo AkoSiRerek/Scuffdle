@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html> 
+  <head>
+    <title>Scuffdle</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale =1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+  </head>
+
+  <body>
+
+      <div id="menu-container">
+        <div id="hamburger">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
+        <div id="dropdown">
+          <div class="dropdown-item">Quit</div>
+        </div>
+      </div>
+
+      <!-- Right: Bar Chart Icon for Stats -->
+      <div id="stats-container">
+        <div id="bar-chart">
+          <div class="bar small"></div>
+          <div class="bar medium"></div>
+          <div class="bar large"></div>
+        </div>
+        <div id="stats-dropdown">
+          <div class="dropdown-item" id="points">Points: 0</div>
+          <div class="dropdown-item" id="highscore">Highscore: 0</div>
+          <div class="dropdown-item" id="games-played">Games Played: 0</div>
+          <div class="dropdown-item" id="wins">Wins: 0</div>
+          <div class="dropdown-item" id="losses">Losses: 0</div>
+          <div class="dropdown-item" id="current-streak">Current Streak: 0</div>
+          <div class="dropdown-item" id="longest-streak">Longest Streak: 0</div>
+        </div>
+      </div>
+
+    <h1 id="title">SCUFFDLE</h1>
+    <br>
+    <div id="board"></div>
+    <br>
+    <div id="keyboard">
+  <div class="key-row">
+    <div class="key">Q</div>
+    <div class="key">W</div>
+    <div class="key">E</div>
+    <div class="key">R</div>
+    <div class="key">T</div>
+    <div class="key">Y</div>
+    <div class="key">U</div>
+    <div class="key">I</div>
+    <div class="key">O</div>
+    <div class="key">P</div>
+  </div>
+
+  <div class="key-row">    
+    <div class="key">A</div>
+    <div class="key">S</div>
+    <div class="key">D</div>
+    <div class="key">F</div>
+    <div class="key">G</div>
+    <div class="key">H</div>
+    <div class="key">J</div>
+    <div class="key">K</div>
+    <div class="key">L</div>
+  </div>
+
+  <div class="key-row">
+    <div class="key wide">Enter</div>
+    <div class="key">Z</div>
+    <div class="key">X</div>
+    <div class="key">C</div>
+    <div class="key">V</div>
+    <div class="key">B</div>
+    <div class="key">N</div>
+    <div class="key">M</div>
+    <div class="key del">⌫</div>
+  </div>
+    
+    <h1 id="answer" style="color: white; text-align: center; margin: 10px;"></h1>
+    <div id="message" style="color: white; text-align: center; margin: 10px;"></div>
+    <button id="restart-btn">Restart</button>
+
+  </body>
+</html>

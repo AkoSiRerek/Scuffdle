@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Scuffdle Menu</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="menu-page">
+    <div id="menu-page">
+      <div id="menu-screen">
+        <button class="menu-btn" onclick="window.location.href='scuffdle.html'">Play</button>
+        <button id="highscore-btn" class="menu-btn">Highscore</button>
+        <button id="about-btn" class="menu-btn">About</button>
+
+      </div>
+    </div>
+    
+    <div id="highscore-panel" class="panel">
+      <p id="highscore-text"></p>
+      <span id="close-highscore">&times;</span>
+    </div>
+
+    <div id="about-panel" class="panel">
+      <p>Scuffdle is a Walmart version of Wordle but it's a fun word guessing game. Try to guess the word in 6 tries!</p>
+      <span id="close-about">&times;</span>
+    </div>
+
+  <script src="menu.js"></script>
+</body>
+</html>

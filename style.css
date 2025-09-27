@@ -1,0 +1,366 @@
+
+body{
+  text-align: center;
+  background-color: black;
+  position: relative;
+}
+
+#title{
+  letter-spacing: 5px;
+  font-size: 50px;
+  font-weight: bold;
+  color: white;
+  font-family: "Inter", sans-serif;
+}
+
+/* MENU PAGE - mobile friendly */
+body.menu-page {
+  height: 100vh;         /* full viewport height */
+  overflow: hidden;      /* prevent scroll */
+  margin: 0;
+  padding: 0;
+  position: relative;    /* for falling letters */
+}
+
+#menu-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+
+#menu-page #menu-screen {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  width: 85%;        /* responsive width */
+  max-width: 400px;  /* caps size on larger screens */
+}
+
+#menu-page .menu-btn {
+  width: 150px;
+  padding: 20px 0;   /* gives comfortable height */
+  font-size: 24px;   /* readable on small screens */
+  font-weight: bold;
+  color: white;
+  background-color: #333;
+  border: 2px solid white;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.01s ease;
+}
+
+#menu-page .menu-btn:hover {
+  background-color: #555;
+  transform: scale(1.05);
+}
+
+#board{
+  position:relative;
+  width: 90%; max-width: 350px;
+  height: 420px;
+  margin:0 auto;
+  margin-top: 3px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#keyboard {
+  width: 95%; max-width: 400px;           
+  height: 150px;           
+  margin: 1px auto 0;    
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.key-row {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 2px;
+}
+
+.key {
+  width: 30px;
+  height: 45px;
+  background-color: #666;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  font-weight: bold;
+  user-select: none;
+  font-size: 18px;
+}
+.key.wide{
+  width: 60px;
+}
+.key.del{
+  width: 60px;
+  font-size: 26px;
+}
+.key:active {
+  transform: scale(0.95);
+  background-color: #444;
+}
+#answer{
+  font-size: 35px;
+  font-weight: bold;
+  font-family: "Inter", sans-serif;
+  transform: translate(0, -20%);
+}
+#message{
+  position: absolute;
+  text-align: center;
+  left: 50%;
+  width: 330px;
+  top: 100px;
+  transform: translate(-54%, -50px);
+  font-size: 35px;
+  font-weight: bold;
+  font-family: "Inter", sans-serif;
+  z-index: 10;
+}
+
+.tile{
+  border: 2px solid rgb(255, 255, 255);
+  width: 60px;
+  height: 60px;
+  margin: 2px;
+
+  background-color: rgb(51, 50, 50);
+  color: rgb(255, 255, 255);
+  font-family: "Inter", sans-serif;  
+  font-size: 40px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.correct{
+  background-color: rgb(9, 143, 9);
+  color: white;
+  border-color: white;
+}
+
+.present{
+   background-color: rgb(195, 167, 9);
+  color: white;
+  border-color: white;
+}
+
+.absent{
+   background-color: darkgray;
+  color: white;
+  border-color: white;
+}
+
+#restart-btn {
+  position: absolute;       /* float above the board */
+  top: 50%;                 /* vertical center */
+  left: 50%;                /* horizontal center */
+  transform: translate(-50%, -120%); /* truly center it */
+  padding: 15px 30px;
+  font-size: 25px;
+  font-weight: bold;
+  background-color: black; /* semi-transparent white */
+  color: white;
+  border: 2px solid white;
+  border-radius: 10px;
+  cursor: pointer;
+  z-index: 20;              /* above tiles and messages */
+  display: none;            /* hide initially */
+}
+
+/* Hamburger Menu */
+#menu-container {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 50;
+}
+
+#hamburger {
+  width: 30px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 22px;
+}
+
+#hamburger .bar {
+  height: 4px;
+  background-color: white;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* When active (menu open) */
+#hamburger.active .bar {
+  background-color: #b3b1b1; /* same as key background */
+}
+
+/* Dropdown (hidden initially, aligned with burger) */
+#dropdown {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 30px;  /* right under burger */
+  left: 0;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: all 0.1s ease;
+}
+
+/* Dropdown visible state */
+#dropdown.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.dropdown-item {
+  color: white;
+  padding: 8px 0;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: left;
+  font-size: 18px;
+  transition: color 0.01s ease;
+}
+
+.dropdown-item:hover {
+  color: #adb0ad;  /* highlight green on hover */
+}
+
+/* Position top-right */
+#stats-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 50;
+}
+
+/* Bar chart icon (3 bars small → tall) */
+#bar-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  cursor: pointer;
+}
+
+#bar-chart .bar {
+  width: 6px;
+  background-color: white;
+  border-radius: 2px;
+  transition: background-color 0.3s;
+}
+
+#bar-chart .small {
+  height: 10px;
+}
+#bar-chart .medium {
+  height: 16px;
+}
+#bar-chart .large {
+  height: 22px;
+}
+
+/* Active (clicked) */
+#bar-chart.active .bar {
+  background-color: #b3b1b1; /* match your key background color */
+}
+
+/* Stats dropdown */
+#stats-dropdown {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 30px;
+  right: 0;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: all 0.01s ease;
+}
+
+#stats-dropdown.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Shared panel styles for About + Highscore */
+.panel {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  opacity: 0;
+  background-color: black;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+  z-index: 100;
+  box-shadow: 0 0 20px white;
+  pointer-events: none;
+  transition: all 0.01s ease;
+}
+
+.panel.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  pointer-events: auto;
+}
+
+.panel p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.panel span {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+}
+.falling-letter {
+  position: absolute;
+  top: -50px;
+  font-size: 22px;
+  font-weight: bold; 
+  animation: fall linear infinite;
+  user-select: none;
+  pointer-events: none;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh);
+  }
+}
+
+.pulse {
+  animation: pulse 1s infinite;
+  border: 2px solid white; /* or any highlight color you like */
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0px white; }
+  50% { box-shadow: 0 0 12px white, 0 0 24px white; }
+  100% { box-shadow: 0 0 0px white; }
+}
