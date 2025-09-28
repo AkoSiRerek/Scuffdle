@@ -291,7 +291,6 @@ body.menu-page {
 #bar-chart .bar {
   width: 6px;
   background-color: white;
-  border-radius: 2px;
   transition: background-color 0.3s;
 }
 
@@ -401,3 +400,4 @@ body.menu-page {
   50% { box-shadow: 0 0 12px white, 0 0 24px white; }
   100% { box-shadow: 0 0 0px white; }
 }
+
