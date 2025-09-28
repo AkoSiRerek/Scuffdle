@@ -3,9 +3,7 @@ var height = 6;
 
 var row = 0;
 var column = 0;
-// fix the color of message
-// ex. "Invalid Word" should always be white after restart
-// same goes for the "Game Over" & "You Did It"
+
 var gameOver = false;
 let wordList = [];
 let word = "";
@@ -34,11 +32,16 @@ window.onload = function(){
   setupListeners();   // attach key listener once
   setupKeyboardClicks();
 
-  document.getElementById("restart-btn").addEventListener("click", () => {
+    document.getElementById("restart-btn").addEventListener("click", () => {
     restart(); // your existing restart function
     document.getElementById("restart-btn").style.display = "none"; // hide button again
   });
 
+    document.getElementById("continue-btn").addEventListener("click", () => {
+    continueGame(); // same behavior as restart
+    document.getElementById("continue-btn").style.display = "none"; // hide after use
+  });
+  
     const hamburger = document.getElementById("hamburger");
     const dropdown = document.getElementById("dropdown");
 
@@ -60,7 +63,6 @@ window.onload = function(){
     statsToggle.classList.toggle("active");
   });
 
-
 }
 //Board
 function initializeBoard() {
@@ -74,20 +76,24 @@ function initializeBoard() {
       tile.innerText = "";
       board.appendChild(tile);
     }
-  }              
-
+  } 
+  
+  updatePulse();
   fetch("words.txt")
   .then(response => response.text())
   .then(text => {
     wordList = text.split(/\r?\n/); // split lines into array
     word = getRandomWord();
-    gameReady = true;       // pick a random word 
+    gameReady = true; 
+    
+    // pick a random word 
   });
 
 function getRandomWord() {
   let index = Math.floor(Math.random() * wordList.length);
   return wordList[index]; 
 }
+  
 }
 function setupKeyboardClicks() {
   document.querySelectorAll(".key").forEach(key => {
@@ -142,7 +148,7 @@ function setupListeners() {
         }
 // --- VALID WORD CHECK ---
       if (!wordList.includes(guess)) {
-        showMessage("Invalid Word!", 1000);
+        showMessage("Invalid Word!", 1000,"white");
         return; 
       }
         // Color tiles
@@ -193,8 +199,30 @@ function restart() {
   row = 0;
   column = 0;
   gameOver = false;
-  document.getElementById("answer").innerText = "";
-  document.getElementById("message").innerText = "";
+  const msg = document.getElementById("message");
+  msg.innerText = "";
+  msg.style.color = "#fff"; // reset to default
+
+  stats.points = 0;
+  updateStatsUI();
+  initializeBoard();
+
+  const keyElements = document.querySelectorAll(".key");
+    keyElements.forEach(key => {
+        key.style.backgroundColor = "#666"; // default color
+    });
+
+    updatePulse();
+}
+
+function continueGame() {
+  row = 0;
+  column = 0;
+  gameOver = false;
+  const msg = document.getElementById("message");
+  msg.innerText = "";
+  msg.style.color = "#fff"; // reset to default
+
   initializeBoard();
 
   const keyElements = document.querySelectorAll(".key");
@@ -229,7 +257,7 @@ function updateKeyboard(guess) {
 function endGame(win) {
   gameOver = true;
   const restartBtn = document.getElementById("restart-btn");
-  restartBtn.style.display = "block"; 
+  const continueBtn = document.getElementById("continue-btn");
 
   const msg = document.getElementById("message");
 
@@ -251,12 +279,18 @@ function endGame(win) {
 
     msg.style.color = "rgb(0,255,0)";
     showMessage("You Did It!");
+
+    continueBtn.style.display = "block";
+    restartBtn.style.display = "none";
   } else {
     stats.losses += 1;
     stats.currentStreak = 0; // reset streak
     msg.style.color = "red";
     showMessage("Game Over!");
     document.getElementById("answer").innerText = word;
+
+    restartBtn.style.display = "block";
+    continueBtn.style.display = "none";
   }
 
   // Update UI and save stats
@@ -288,4 +322,3 @@ function updatePulse() {
     }
   }
 }
-
