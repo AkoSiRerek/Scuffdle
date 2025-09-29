@@ -202,6 +202,7 @@ function restart() {
   const msg = document.getElementById("message");
   msg.innerText = "";
   msg.style.color = "#fff"; // reset to default
+  document.getElementById("answer").innerText = "";
 
   stats.points = 0;
   updateStatsUI();
@@ -322,3 +323,4 @@ function updatePulse() {
     }
   }
 }
+
