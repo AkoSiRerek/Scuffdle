@@ -202,11 +202,12 @@ function restart() {
   const msg = document.getElementById("message");
   msg.innerText = "";
   msg.style.color = "#fff"; // reset to default
-  document.getElementById("answer").innerText = "";
 
   stats.points = 0;
   updateStatsUI();
   initializeBoard();
+
+   document.getElementById("answer").innerText = "";
 
   const keyElements = document.querySelectorAll(".key");
     keyElements.forEach(key => {
@@ -323,4 +324,5 @@ function updatePulse() {
     }
   }
 }
+
 
